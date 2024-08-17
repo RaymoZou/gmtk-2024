@@ -4,8 +4,9 @@ extends TileMapLayer
 var TILESHEET_INDEX : int = 2 # this shouldn't change if we're just using 1 spritesheet
 
 # TODO: change this to change the type of block we're placing down
-var STONE_TILE : Vector2 = Vector2(6, 5)
-#var atlas_coords : Vector2 = Vector2.ZERO
+const STONE_TILE : Vector2 = Vector2(6, 5)
+const GRASS_TILE : Vector2 = Vector2(1, 2)
+var curr_tile : Vector2 = STONE_TILE # stone by default
 const ZOOM_AMOUNT : float = 0.1
 
 # returns the mouse position in tile coordinates
@@ -21,7 +22,7 @@ func place_block(position: Vector2):
 		print("there is already a block there!")
 	else:
 		print("placing block at " + str(position))
-		set_cell(position, TILESHEET_INDEX, STONE_TILE)
+		set_cell(position, TILESHEET_INDEX, curr_tile)
 	
 	# TODO: Based on the type of block placed, run the following function to return
 	# - Number of rooms of that type
@@ -67,16 +68,16 @@ func remove_block(position: Vector2):
 	else:
 		print("block removed!")
 		erase_cell(position)
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("left_mouse"):
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("left_mouse"):
 		place_block(get_tile_position())
 	
-	if Input.is_action_just_pressed("right_mouse"):
+	if event.is_action_pressed("right_mouse"):
 		remove_block(get_tile_position())
 		
-	if Input.is_action_just_pressed("scroll_down"):
+	if event.is_action_pressed("scroll_down"):
 		camera.zoom -= Vector2(ZOOM_AMOUNT, ZOOM_AMOUNT)
 		
-	if Input.is_action_just_pressed("scroll_up"):
+	if event.is_action_pressed("scroll_up"):
 		camera.zoom += Vector2(ZOOM_AMOUNT, ZOOM_AMOUNT)
