@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxgrddf7oqmy6"]
+[gd_scene load_steps=3 format=3 uid="uid://cxgrddf7oqmy6"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_o4qom"]
+[ext_resource type="Script" path="res://quest_ui.gd" id="2_ssj7f"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -41,6 +42,40 @@ offset_right = 203.18
 offset_bottom = 36.4273
 text = "tile: N/A"
 fit_content = true
+
+[node name="QuestUI" type="VBoxContainer" parent="."]
+offset_right = 294.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-25, -25)
+alignment = 1
+script = ExtResource("2_ssj7f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuestUI"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Quest #1"
+fit_content = true
+scroll_active = false
+text_direction = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="QuestUI"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "Quest #2"
+fit_content = true
+scroll_active = false
+text_direction = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="QuestUI"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "Quest #3"
+fit_content = true
+scroll_active = false
+text_direction = 1
 
 [connection signal="pressed" from="ButtonContainerUI/Stone" to="ButtonContainerUI" method="handle_stone"]
 [connection signal="pressed" from="ButtonContainerUI/Grass2" to="ButtonContainerUI" method="handle_grass"]
