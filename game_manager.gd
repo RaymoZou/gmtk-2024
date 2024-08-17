@@ -13,7 +13,7 @@ class RoomData:
 		cells = _cells
 
 # Do a complete search of all room types
-func _on_placement_layer_block_placed() -> void:
+func handle_block_placed() -> void:
 	# TODO: Add for the rest of the tile types
 	var stone_data = RoomData.new(
 		"stone",

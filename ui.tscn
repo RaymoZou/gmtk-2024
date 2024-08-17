@@ -1,42 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwrwck0htdxx5"]
+[gd_scene load_steps=2 format=3 uid="uid://cxgrddf7oqmy6"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_o4qom"]
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Control" type="Control" parent="."]
+[node name="ButtonContainerUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 542.0
-offset_top = -57.0
-offset_right = 665.0
-offset_bottom = -26.0
+offset_left = -85.0
+offset_top = -76.0
+offset_right = 38.0
+offset_bottom = -45.0
+grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.03187, 1)
+scale = Vector2(1.90126, 1.84253)
 script = ExtResource("1_o4qom")
 
-[node name="Stone" type="Button" parent="Control"]
+[node name="Stone" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
 offset_right = 53.0
 offset_bottom = 31.0
 text = "Stone"
 
-[node name="Grass2" type="Button" parent="Control"]
+[node name="Grass2" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
 offset_left = 57.0
 offset_right = 118.0
 offset_bottom = 31.0
 text = "Grass2"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonContainerUI"]
 layout_mode = 0
-offset_left = 125.0
-offset_right = 203.0
-offset_bottom = 31.0
+offset_left = 125.18
+offset_top = 5.42731
+offset_right = 203.18
+offset_bottom = 36.4273
 text = "tile: N/A"
 fit_content = true
 
-[connection signal="pressed" from="Control/Stone" to="Control" method="handle_stone"]
-[connection signal="pressed" from="Control/Grass2" to="Control" method="handle_grass"]
+[connection signal="pressed" from="ButtonContainerUI/Stone" to="ButtonContainerUI" method="handle_stone"]
+[connection signal="pressed" from="ButtonContainerUI/Grass2" to="ButtonContainerUI" method="handle_grass"]
