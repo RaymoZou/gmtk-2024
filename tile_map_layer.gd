@@ -1,12 +1,12 @@
 extends TileMapLayer
 
+signal block_placed()
+
 @onready var camera : Camera2D = $"../Camera2D"
 var TILESHEET_INDEX : int = 2 # this shouldn't change if we're just using 1 spritesheet
 
-# TODO: change this to change the type of block we're placing down
-const STONE_TILE : Vector2 = Vector2(6, 5)
-const GRASS_TILE : Vector2 = Vector2(1, 2)
-var curr_tile : Vector2 = STONE_TILE # stone by default
+var curr_tile : Vector2 = TILE.STONE_TILE # Default to stone tile
+
 const ZOOM_AMOUNT : float = 0.1
 
 # returns the mouse position in tile coordinates
@@ -23,42 +23,9 @@ func place_block(position: Vector2):
 	else:
 		print("placing block at " + str(position))
 		set_cell(position, TILESHEET_INDEX, curr_tile)
+	# Emit signal that the blocks have changed
+	block_placed.emit()
 	
-	# TODO: Based on the type of block placed, run the following function to return
-	# - Number of rooms of that type
-	# - The area of each room
-	# - eg. "kitchen: [ 13, 8 ]"
-	const room_type_atlas_vec = Vector2i(6,5) # TODO: Set this to the type of block placed
-	var cells = $".".get_used_cells_by_id(2, room_type_atlas_vec)
-	var num_rooms = find_rooms(cells)
-	print("number of rooms", num_rooms)
-	
-func find_rooms(cells: Array[Vector2i]) -> int:
-	var num_rooms = 0
-	while len(cells) > 0:
-		var coords = cells[0]
-		do_dfs(coords, cells)
-		num_rooms += 1
-	return num_rooms
-	
-func do_dfs(coords: Vector2i, cells: Array[Vector2i]) -> void:
-	# TODO: Do we need to check boundaries?
-	# Check if the current set of coordinates exists
-	if (cells.find(coords) == -1):
-		return
-	
-	# When you process a set of coordinates, remove it from cells
-	var currentInd = cells.find(coords)
-	cells.remove_at(currentInd)
-	
-	var up = Vector2i(coords.x, coords.y - 1)
-	var right = Vector2i(coords.x + 1, coords.y)
-	var down = Vector2i(coords.x, coords.y + 1)
-	var left = Vector2i(coords.x - 1, coords.y)
-	do_dfs(up, cells)
-	do_dfs(right, cells)
-	do_dfs(down, cells)
-	do_dfs(left, cells)
 	
 # remove the block at the cursor position
 func remove_block(position: Vector2):

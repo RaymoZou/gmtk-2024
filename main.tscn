@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://tj4anjtvy1is"]
+[gd_scene load_steps=8 format=4 uid="uid://tj4anjtvy1is"]
 
+[ext_resource type="Script" path="res://game_manager.gd" id="1_xjsfp"]
 [ext_resource type="Texture2D" uid="uid://c0yaj0k1eyvqg" path="res://spritesheet.png" id="2_hquij"]
 [ext_resource type="Script" path="res://tile_map_layer.gd" id="2_li1es"]
-[ext_resource type="PackedScene" uid="uid://cxgrddf7oqmy6" path="res://ui.tscn" id="3_3nhhi"]
+[ext_resource type="PackedScene" uid="uid://cwrwck0htdxx5" path="res://ui.tscn" id="3_3nhhi"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0h1hw"]
 tile_data = PackedInt32Array(0, 393218, 5, 65536, 393218, 5, 131072, 393218, 5, 196608, 393218, 5, 1, 393218, 5, 196609, 393218, 5, 2, 393218, 5, 196610, 393218, 5, 3, 393218, 5, 65539, 393218, 5, 131075, 393218, 5, 196611, 393218, 5)
@@ -25,11 +26,12 @@ sources/2 = SubResource("TileSetAtlasSource_pab8w")
 pattern_0 = SubResource("TileMapPattern_0h1hw")
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_xjsfp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="Stone" type="TileMapLayer" parent="."]
+[node name="PlacementLayer" type="TileMapLayer" parent="."]
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAAAAAAAgAGAAUAAAA=")
@@ -43,3 +45,5 @@ tile_map_data = PackedByteArray("AAD+/wkAAgAAAAIAAAD//wkAAgAAAAIAAAAAAAkAAgAAAAI
 tile_set = SubResource("TileSet_ukeqh")
 
 [node name="UI" parent="." instance=ExtResource("3_3nhhi")]
+
+[connection signal="block_placed" from="PlacementLayer" to="." method="_on_placement_layer_block_placed"]
