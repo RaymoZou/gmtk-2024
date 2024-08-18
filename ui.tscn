@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxgrddf7oqmy6"]
+[gd_scene load_steps=2 format=3 uid="uid://cxgrddf7oqmy6"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_o4qom"]
-[ext_resource type="Script" path="res://quest_ui.gd" id="2_ssj7f"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_o4qom")
@@ -43,15 +42,14 @@ offset_bottom = 36.4273
 text = "tile: N/A"
 fit_content = true
 
-[node name="QuestUI" type="VBoxContainer" parent="."]
+[node name="ObjectivesUI" type="VBoxContainer" parent="."]
 offset_right = 294.0
 offset_bottom = 40.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(-25, -25)
 alignment = 1
-script = ExtResource("2_ssj7f")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="QuestUI"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ObjectivesUI"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Quest #1"
@@ -59,7 +57,7 @@ fit_content = true
 scroll_active = false
 text_direction = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="QuestUI"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="ObjectivesUI"]
 visible = false
 layout_mode = 2
 bbcode_enabled = true
@@ -68,7 +66,7 @@ fit_content = true
 scroll_active = false
 text_direction = 1
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="QuestUI"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="ObjectivesUI"]
 visible = false
 layout_mode = 2
 bbcode_enabled = true
