@@ -30,8 +30,6 @@ pattern_0 = SubResource("TileMapPattern_0h1hw")
 [node name="main" type="Node2D"]
 script = ExtResource("1_xjsfp")
 
-[node name="PlayerCamera" parent="." instance=ExtResource("2_45kkc")]
-
 [node name="PlacementLayer" type="TileMapLayer" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -49,5 +47,7 @@ tile_set = SubResource("TileSet_ukeqh")
 
 [node name="PlayerController" type="Node" parent="."]
 script = ExtResource("6_0suxm")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("2_45kkc")]
 
 [connection signal="block_placed" from="PlacementLayer" to="." method="handle_block_placed"]
