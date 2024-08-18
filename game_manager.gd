@@ -6,10 +6,8 @@ extends Node
 
 signal updated_rooms(rooms: Array[Room])
 
-# used for calculating area of rooms, not sure how else to implement besides
-# making this a global variable...
-var area_count : int = 0
 var rooms : Array[Room] # array of all rooms
+var rooms_are_connected: bool
 
 class RoomData:
 	var name: String
@@ -36,24 +34,34 @@ func handle_block_placed() -> void:
 		var cells = room_data.cells
 		while len(cells) > 0:
 			var coords = cells[0]
-			do_dfs(coords, cells)
-			var room : Room = Room.new(room_data.name, area_count)
+			var area = do_dfs(coords, cells, 0)
+			var room : Room = Room.new(room_data.name, area)
 			rooms.push_front(room)
-			area_count = 0 # reset the count
-			
+	
+	# Check that all rooms are connected
+	# The same logic as above, except we don't separate by room type
+	var all_cells = placement_layer.get_used_cells()
+	var num_rooms = 0
+	while (len(all_cells) > 0):
+		var coords = all_cells[0]
+		do_dfs(coords, all_cells, 0)
+		num_rooms += 1
+	rooms_are_connected = num_rooms == 1
+	
 	# emit a signal with the new rooms
 	updated_rooms.emit(rooms)
-	
-	
-func do_dfs(coords: Vector2i, cells: Array[Vector2i]) -> void:
+
+
+# This needs to return area as an int beacuse Godot passes primitives by value, not reference
+func do_dfs(coords: Vector2i, cells: Array[Vector2i], area: int) -> int:
 	# TODO: Do we need to check boundaries?
 	# Check if the current set of coordinates exists
 	if (cells.find(coords) == -1):
-		return
+		return area
 	
 	# When you process a set of coordinates, remove it from cells
 	# AND increment area count
-	area_count += 1
+	area += 1
 	var index = cells.find(coords)
 	cells.remove_at(index)
 	
@@ -61,7 +69,10 @@ func do_dfs(coords: Vector2i, cells: Array[Vector2i]) -> void:
 	var right = Vector2i(coords.x + 1, coords.y)
 	var down = Vector2i(coords.x, coords.y + 1)
 	var left = Vector2i(coords.x - 1, coords.y)
-	do_dfs(up, cells)
-	do_dfs(right, cells)
-	do_dfs(down, cells)
-	do_dfs(left, cells)
+	area = do_dfs(up, cells, area)
+	area = do_dfs(right, cells, area)
+	area = do_dfs(down, cells, area)
+	area = do_dfs(left, cells, area)
+
+	return area
+	
