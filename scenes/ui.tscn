@@ -48,25 +48,7 @@ alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="ObjectivesUI"]
 layout_mode = 2
 bbcode_enabled = true
-text = "Quest #1"
-fit_content = true
-scroll_active = false
-text_direction = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="ObjectivesUI"]
-visible = false
-layout_mode = 2
-bbcode_enabled = true
-text = "Quest #2"
-fit_content = true
-scroll_active = false
-text_direction = 1
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="ObjectivesUI"]
-visible = false
-layout_mode = 2
-bbcode_enabled = true
-text = "Quest #3"
+text = "place_holder text"
 fit_content = true
 scroll_active = false
 text_direction = 1
