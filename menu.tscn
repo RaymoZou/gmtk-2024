@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bidup656jk0v2"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_s7b4p"]
+[ext_resource type="Theme" uid="uid://ca7irp50b1m6f" path="res://Theme.tres" id="2_3ipwx"]
+
+[node name="Menu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s7b4p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 205.0
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_3ipwx")
+text = "Untitled Game"
+fit_content = true
+autowrap_mode = 0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme = ExtResource("2_3ipwx")
+text = "Start"
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_3ipwx")
+text = "Options"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+theme = ExtResource("2_3ipwx")
+text = "Quit"
+alignment = 0
+
+[connection signal="button_up" from="VBoxContainer/StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_button_up"]
