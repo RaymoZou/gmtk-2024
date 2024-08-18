@@ -5,40 +5,36 @@
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_o4qom")
 
-[node name="ButtonContainerUI" type="Control" parent="."]
-layout_mode = 3
+[node name="ButtonContainerUI" type="HBoxContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -85.0
-offset_top = -76.0
-offset_right = 38.0
-offset_bottom = -45.0
+offset_left = -75.0
+offset_top = -38.0
+offset_right = 102.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.90126, 1.84253)
+scale = Vector2(0.932428, 0.903626)
 
 [node name="Stone" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-offset_right = 53.0
-offset_bottom = 31.0
 text = "Stone"
 
 [node name="Grass2" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-offset_left = 57.0
-offset_right = 118.0
-offset_bottom = 31.0
 text = "Grass2"
 
+[node name="Water" type="Button" parent="ButtonContainerUI"]
+layout_mode = 2
+text = "Water
+"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="ButtonContainerUI"]
-layout_mode = 0
-offset_left = 125.18
-offset_top = 5.42731
-offset_right = 203.18
-offset_bottom = 36.4273
+visible = false
+layout_mode = 2
 text = "tile: N/A"
 fit_content = true
 
@@ -77,3 +73,4 @@ text_direction = 1
 
 [connection signal="pressed" from="ButtonContainerUI/Stone" to="." method="handle_stone"]
 [connection signal="pressed" from="ButtonContainerUI/Grass2" to="." method="handle_grass"]
+[connection signal="pressed" from="ButtonContainerUI/Water" to="." method="handle_water"]

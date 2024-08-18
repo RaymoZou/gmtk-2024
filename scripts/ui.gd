@@ -22,11 +22,16 @@ func handle_objectives_updated():
 	objective_label.text = objective_text
 
 func handle_stone():
-	print("changing to stone type")
+	#print("changing to stone type")
 	tile_label.text = "tile: stone"
 	tile_manager.curr_tile = Tile.STONE_TILE
 	
 func handle_grass():
-	print("grass type")
+	#print("grass type")
 	tile_label.text = "tile: grass"
 	tile_manager.curr_tile = Tile.GRASS_TILE
+
+func handle_water():
+	#print("water type")
+	tile_label.text = "tile: water"
+	tile_manager.curr_tile = Tile.WATER_TILE

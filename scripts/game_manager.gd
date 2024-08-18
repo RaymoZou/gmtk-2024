@@ -30,7 +30,17 @@ func handle_cell_layout_change() -> void:
 		placement_layer.get_used_cells_by_id(2, Tile.GRASS_TILE),
 	)
 	
-	for room_data in [stone_data, grass_data]:
+	var water_data = RoomData.new(
+		"water",
+		placement_layer.get_used_cells_by_id(2, Tile.WATER_TILE),
+	)
+	
+	var layers : Array[RoomData]
+	layers.push_back(stone_data)
+	layers.push_back(grass_data)
+	layers.push_back(water_data)
+	
+	for room_data in layers:
 		var cells = room_data.cells
 		while len(cells) > 0:
 			var coords = cells[0]

@@ -12,6 +12,8 @@ func initialize_objectives():
 	objectives.push_front(stone_objective)
 	var grass_objective = Objective.new("Create a Grass room with an area of 3", 3, "grass", Objective.Status.INCOMPLETE)
 	objectives.push_front(grass_objective)
+	var water_objective = Objective.new("Create a Water room with an area of 8", 8, "water", Objective.Status.INCOMPLETE)
+	objectives.push_front(water_objective)
 	objectives_updated.emit()
 
 func _ready():
