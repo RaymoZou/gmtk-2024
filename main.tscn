@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://placement_layer.gd" id="2_li1es"]
 [ext_resource type="PackedScene" uid="uid://cxgrddf7oqmy6" path="res://ui.tscn" id="3_3nhhi"]
 [ext_resource type="Script" path="res://player_controller.gd" id="6_0suxm"]
-[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="7_k8kfs"]
+[ext_resource type="PackedScene" uid="uid://wu4u12hwf865" path="res://objective_manager.tscn" id="7_k8kfs"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0h1hw"]
 tile_data = PackedInt32Array(0, 393218, 5, 65536, 393218, 5, 131072, 393218, 5, 196608, 393218, 5, 1, 393218, 5, 196609, 393218, 5, 2, 393218, 5, 196610, 393218, 5, 3, 393218, 5, 65539, 393218, 5, 131075, 393218, 5, 196611, 393218, 5)
@@ -51,7 +51,8 @@ script = ExtResource("6_0suxm")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("2_45kkc")]
 
-[node name="QuestManager" parent="." instance=ExtResource("7_k8kfs")]
+[node name="ObjectiveManager" parent="." instance=ExtResource("7_k8kfs")]
 
-[connection signal="updated_rooms" from="." to="QuestManager" method="handle_room_updated"]
+[connection signal="updated_rooms" from="." to="ObjectiveManager" method="handle_room_updated"]
 [connection signal="block_placed" from="PlacementLayer" to="." method="handle_block_placed"]
+[connection signal="objectives_updated" from="ObjectiveManager" to="UI" method="handle_objectives_updated"]
