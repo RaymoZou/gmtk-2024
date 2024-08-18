@@ -28,6 +28,7 @@ sources/2 = SubResource("TileSetAtlasSource_pab8w")
 pattern_0 = SubResource("TileMapPattern_0h1hw")
 
 [node name="main" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_xjsfp")
 
 [node name="PlacementLayer" type="TileMapLayer" parent="."]
