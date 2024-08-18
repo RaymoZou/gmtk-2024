@@ -1,6 +1,6 @@
-class_name ObjectiveManager
-
 extends Node
+
+class_name ObjectiveManager
 
 # just going to have 3 objectives for now - TODO: add a new objective when one is complete
 var objectives : Array[Objective]

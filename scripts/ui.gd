@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var grass2_button : Button = $ButtonContainerUI/Grass2
 @onready var tile_label : RichTextLabel = $ButtonContainerUI/RichTextLabel
 @onready var tile_manager : TileMapLayer = $"../PlacementLayer"
-@onready var objective_manager : ObjectiveManager = $"../ObjectiveManager"
+@onready var objective_manager = $"../ObjectiveManager"
 @onready var objective_label : RichTextLabel = $ObjectivesUI/RichTextLabel
 
 func handle_objectives_updated():
