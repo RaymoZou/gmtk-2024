@@ -54,5 +54,5 @@ script = ExtResource("5_17rar")
 [node name="ObjectiveManager" parent="." instance=ExtResource("7_dytgf")]
 
 [connection signal="updated_rooms" from="." to="ObjectiveManager" method="handle_room_updated"]
-[connection signal="block_placed" from="PlacementLayer" to="." method="handle_block_placed"]
+[connection signal="cell_layout_changed" from="PlacementLayer" to="." method="handle_cell_layout_change"]
 [connection signal="objectives_updated" from="ObjectiveManager" to="UI" method="handle_objectives_updated"]

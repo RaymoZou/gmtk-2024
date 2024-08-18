@@ -18,7 +18,7 @@ class RoomData:
 		cells = _cells
 
 # Do a complete search of all room types
-func handle_block_placed() -> void:
+func handle_cell_layout_change() -> void:
 	rooms.clear()
 	# TODO: Add for the rest of the tile types
 	var stone_data = RoomData.new(

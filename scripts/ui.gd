@@ -7,12 +7,19 @@ extends CanvasLayer
 @onready var objective_manager = $"../ObjectiveManager"
 @onready var objective_label : RichTextLabel = $ObjectivesUI/RichTextLabel
 
+# returns a formatted objective list item
+func get_objective_text(objective : Objective) -> String:
+	var result : String = objective.description
+	if objective.status == objective.Status.COMPLETE:
+		result += " (completed)"
+	result += "\n" # new line
+	return result
+	
 func handle_objectives_updated():
-	for objective in objective_manager.objectives:
-		if objective.status == Objective.Status.INCOMPLETE:
-			objective_label.text = objective.description
-		else:
-			objective_label.text = objective.description + " (completed)"
+	var objective_text : String = ""
+	for objective : Objective in objective_manager.objectives:
+		objective_text += get_objective_text(objective)
+	objective_label.text = objective_text
 
 func handle_stone():
 	print("changing to stone type")

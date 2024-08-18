@@ -17,11 +17,15 @@ func initialize_objectives():
 func _ready():
 	initialize_objectives()
 
-# TODO: iterate through the current quests and rooms
+# TODO: iterate through the current objectives and rooms
+# TODO: don't need to pass in rooms as a signal parameter (since we
+# 		can access as a global variable)
 func handle_room_updated(rooms : Array[Room]):
-	for room in rooms:
-		for objective in objectives:
+	for objective in objectives:
+		for room in rooms:
 			if room.area >= objective.area and room.type == objective.type:
-				print("objective complete!")
 				objective.status = Objective.Status.COMPLETE
-				objectives_updated.emit()
+				break # stop here - don't compare to anymore rooms
+			else:
+				objective.status = Objective.Status.INCOMPLETE
+		objectives_updated.emit()
