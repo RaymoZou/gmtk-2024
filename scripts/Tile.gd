@@ -5,3 +5,5 @@ class_name Tile
 const STONE_TILE = Vector2(8, 5)
 const GRASS_TILE = Vector2(1, 2)
 const WATER_TILE = Vector2(9, 7)
+
+enum TILE_TYPE { STONE, GRASS, WATER }

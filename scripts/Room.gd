@@ -1,6 +1,6 @@
 class_name Room
 
-var type: String
+var type: Tile.TILE_TYPE
 var area: int
 	
 func _init(_type, _area):

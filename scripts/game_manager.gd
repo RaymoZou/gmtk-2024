@@ -10,11 +10,11 @@ var rooms : Array[Room] # array of all rooms
 var rooms_are_connected: bool
 
 class RoomData:
-	var name: String
+	var type: Tile.TILE_TYPE
 	var cells: Array[Vector2i]
 	
-	func _init(_name, _cells):
-		name = _name
+	func _init(_type, _cells):
+		type = _type
 		cells = _cells
 
 # Do a complete search of all room types
@@ -22,16 +22,16 @@ func handle_cell_layout_change() -> void:
 	rooms.clear()
 	# TODO: Add for the rest of the tile types
 	var stone_data = RoomData.new(
-		"stone",
+		Tile.TILE_TYPE.STONE,
 		placement_layer.get_used_cells_by_id(2, Tile.STONE_TILE),
 	)
 	var grass_data = RoomData.new(
-		"grass",
+		Tile.TILE_TYPE.GRASS,
 		placement_layer.get_used_cells_by_id(2, Tile.GRASS_TILE),
 	)
 	
 	var water_data = RoomData.new(
-		"water",
+		Tile.TILE_TYPE.WATER,
 		placement_layer.get_used_cells_by_id(2, Tile.WATER_TILE),
 	)
 	
@@ -45,7 +45,7 @@ func handle_cell_layout_change() -> void:
 		while len(cells) > 0:
 			var coords = cells[0]
 			var area = do_dfs(coords, cells, 0)
-			var room : Room = Room.new(room_data.name, area)
+			var room : Room = Room.new(room_data.type, area)
 			rooms.push_front(room)
 	
 	# Check that all rooms are connected
