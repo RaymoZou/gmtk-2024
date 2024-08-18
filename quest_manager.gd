@@ -9,3 +9,5 @@ func handle_room_updated(rooms : Array[Room]):
 			print("there is a stone room with an area of 5!")
 		if room.area >= AREA and room.type == "grass":
 			print("there is a grass room with an area of 5!")
+			
+	print("all rooms are connected: %s" % $"..".rooms_are_connected)
