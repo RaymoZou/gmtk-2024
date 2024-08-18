@@ -27,7 +27,7 @@ class AreaObjective extends Objective:
 	func check(rooms: Array[Room]) -> void:
 		var room_found = false
 		for room in rooms:
-			if room.area >= area:
+			if room.area >= area and room.type == room_type:
 				room_found = true
 				break
 		status = Status.COMPLETE if room_found else Status.INCOMPLETE

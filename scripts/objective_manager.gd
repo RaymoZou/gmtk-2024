@@ -39,8 +39,6 @@ func _ready():
 # 		can access as a global variable)
 func handle_room_updated(rooms : Array[Room]):
 	for objective in objectives:
-		# Filter by rooms for this objective
-		var matching_rooms = rooms.filter(func(room: Room): return room.type == objective.room_type)
-		objective.check(matching_rooms)
+		objective.check(rooms)
 
 	objectives_updated.emit()
