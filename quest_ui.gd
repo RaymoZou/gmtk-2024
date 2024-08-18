@@ -5,4 +5,4 @@ extends VBoxContainer
 #@onready var quest3 : RichTextLabel = $RichTextLabel
 
 func _ready() -> void:
-	quest1.text = "Create a stone area of 4"
+	quest1.text = "Create a Stone Room of 4"

@@ -4,12 +4,12 @@ extends Node
 
 @onready var placement_layer : TileMapLayer = $PlacementLayer
 
-func _ready() -> void:
-	var quest : Quest = Quest.new(
-		"Create a Stone area of 4",
-		4,
-		Tile.STONE_TILE
-	)
+signal updated_rooms(rooms: Array[Room])
+
+# used for calculating area of rooms, not sure how else to implement besides
+# making this a global variable...
+var area_count : int = 0
+var rooms : Array[Room] # array of all rooms
 
 class RoomData:
 	var name: String
@@ -21,6 +21,7 @@ class RoomData:
 
 # Do a complete search of all room types
 func handle_block_placed() -> void:
+	rooms.clear()
 	# TODO: Add for the rest of the tile types
 	var stone_data = RoomData.new(
 		"stone",
@@ -33,12 +34,15 @@ func handle_block_placed() -> void:
 	
 	for room_data in [stone_data, grass_data]:
 		var cells = room_data.cells
-		var num_rooms = 0
 		while len(cells) > 0:
 			var coords = cells[0]
 			do_dfs(coords, cells)
-			num_rooms += 1
-		print("Number of %s rooms: %d" % [room_data.name, num_rooms])
+			var room : Room = Room.new(room_data.name, area_count)
+			rooms.push_front(room)
+			area_count = 0 # reset the count
+			
+	# emit a signal with the new rooms
+	updated_rooms.emit(rooms)
 	
 	
 func do_dfs(coords: Vector2i, cells: Array[Vector2i]) -> void:
@@ -48,8 +52,10 @@ func do_dfs(coords: Vector2i, cells: Array[Vector2i]) -> void:
 		return
 	
 	# When you process a set of coordinates, remove it from cells
-	var currentInd = cells.find(coords)
-	cells.remove_at(currentInd)
+	# AND increment area count
+	area_count += 1
+	var index = cells.find(coords)
+	cells.remove_at(index)
 	
 	var up = Vector2i(coords.x, coords.y - 1)
 	var right = Vector2i(coords.x + 1, coords.y)

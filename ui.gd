@@ -1,9 +1,9 @@
-extends Control
+extends CanvasLayer
 
-@onready var stone_button : Button = $Stone
-@onready var grass2_button : Button = $Grass2
-@onready var tile_label : RichTextLabel = $RichTextLabel
-@onready var tile_manager : TileMapLayer = $"../../PlacementLayer"
+@onready var stone_button : Button = $ButtonContainerUI/Stone
+@onready var grass2_button : Button = $ButtonContainerUI/Grass2
+@onready var tile_label : RichTextLabel = $ButtonContainerUI/RichTextLabel
+@onready var tile_manager : TileMapLayer = $"../PlacementLayer"
 
 func handle_stone():
 	print("changing to stone type")
