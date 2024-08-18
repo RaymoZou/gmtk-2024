@@ -17,10 +17,8 @@ func place_block(position: Vector2):
 		print("there is already a block there!")
 	else:
 		#print("placing block at " + str(position))
-		set_cell(position, TILESHEET_INDEX, curr_tile)
-	# Emit signal that the blocks have changed
-	block_placed.emit()
-	
+		set_cell(position, TILESHEET_INDEX, curr_tile)	
+		block_placed.emit() # Emit signal that the blocks have changed
 	
 # remove the block at the cursor position
 func remove_block(position: Vector2):
