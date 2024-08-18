@@ -1,4 +1,4 @@
-class_name TILE
+class_name Tile
 
 # TODO: change this to change the type of block we're placing down
 # These are vectors that point to the coordinates of the tile in the tileset atlas

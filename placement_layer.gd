@@ -3,7 +3,7 @@ extends TileMapLayer
 signal block_placed()
 
 var TILESHEET_INDEX : int = 2 # this shouldn't change if we're just using 1 spritesheet
-var curr_tile : Vector2 = TILE.STONE_TILE # Default to stone tile
+var curr_tile : Vector2 = Tile.STONE_TILE # Default to stone tile
 
 # returns the mouse position in tile coordinates
 func get_tile_position() -> Vector2:

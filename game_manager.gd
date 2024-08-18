@@ -4,6 +4,13 @@ extends Node
 
 @onready var placement_layer : TileMapLayer = $PlacementLayer
 
+func _ready() -> void:
+	var quest : Quest = Quest.new(
+		"Create a Stone area of 4",
+		4,
+		Tile.STONE_TILE
+	)
+
 class RoomData:
 	var name: String
 	var cells: Array[Vector2i]
@@ -17,11 +24,11 @@ func handle_block_placed() -> void:
 	# TODO: Add for the rest of the tile types
 	var stone_data = RoomData.new(
 		"stone",
-		placement_layer.get_used_cells_by_id(2, TILE.STONE_TILE),
+		placement_layer.get_used_cells_by_id(2, Tile.STONE_TILE),
 	)
 	var grass_data = RoomData.new(
 		"grass",
-		placement_layer.get_used_cells_by_id(2, TILE.GRASS_TILE),
+		placement_layer.get_used_cells_by_id(2, Tile.GRASS_TILE),
 	)
 	
 	for room_data in [stone_data, grass_data]:
