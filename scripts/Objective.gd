@@ -74,7 +74,8 @@ class DimensionObjective extends Objective:
 
 	func check(rooms: Array[Room]) -> void:
 		var room_found = false
-		for room in rooms:
+		var filtered_rooms = rooms.filter(func(room: Room): return room.type == room_type)
+		for room in filtered_rooms:
 			room.cells.sort_custom(coords_sort_fn)
 			for cell in room.cells:
 				var curr_width = 0
