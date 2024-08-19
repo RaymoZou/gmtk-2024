@@ -9,9 +9,11 @@ extends CanvasLayer
 
 # returns a formatted objective list item
 func get_objective_text(objective : Objective) -> String:
-	var result : String = objective.description
+	var result : String
 	if objective.status == objective.Status.COMPLETE:
-		result += " (completed)"
+		result = "[color=green]" + objective.description + "[/color]"
+	else:
+		result = objective.description
 	result += "\n" # new line
 	return result
 	
