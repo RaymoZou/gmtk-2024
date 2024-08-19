@@ -16,6 +16,13 @@ func initialize_objectives():
 		5,
 		)
 	objectives.push_front(stone_objective)
+	var stone_dim_objective = Objective.DimensionObjective.new(
+		"Create a Stone room that is at least 2 wide and 2 high",
+		Tile.TILE_TYPE.STONE,
+		2,
+		2,
+		)
+	objectives.push_front(stone_dim_objective)
 	# Grass
 	var grass_objective = Objective.AreaObjective.new(
 		"Create a Grass room with an area of 3",
@@ -23,6 +30,13 @@ func initialize_objectives():
 		3,
 		)
 	objectives.push_front(grass_objective)
+	var grass_dim_objective = Objective.DimensionObjective.new(
+		"Create a Grass room that is at least 3 high",
+		Tile.TILE_TYPE.GRASS,
+		1,
+		3,
+		)
+	objectives.push_front(grass_dim_objective)
 	# Water
 	var water_objective = Objective.AreaObjective.new(
 		"Create a Water room with an area of 8",

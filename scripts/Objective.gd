@@ -54,3 +54,64 @@ class RelativeObjective extends Objective:
 			if room.type == type and has_adjacent(room, adj_type):
 				break
 		status = Status.COMPLETE if room_found else Status.INCOMPLETE
+
+
+# Specifies the MINIMUM dimensions required
+# Set a dimension to value of 1 to effectively ignore it
+# Do not set to 0 otherwise it act funny
+# TODO: Add flag to toggle whether the requirement is minimum or maximum
+class DimensionObjective extends Objective:
+	var width: int
+	var height: int
+
+	func _init(_description, _room_type, _width, _height) -> void:
+		description = _description
+		room_type = _room_type
+		type = ObjectiveType.AREA
+		status = Status.INCOMPLETE
+		width = _width
+		height = _height
+
+	func check(rooms: Array[Room]) -> void:
+		var room_found = false
+		for room in rooms:
+			room.cells.sort_custom(coords_sort_fn)
+			for cell in room.cells:
+				var curr_width = 0
+				var curr_col = cell
+				# Greedily try to satisfy width requirement as long as there's a next cell
+				while curr_width < width and curr_col != null:
+					# Greedily try to satisfy height requirement as long as there's a next cell
+					var curr_height = 0
+					var curr_row = curr_col
+					while curr_height < height and curr_row != null:
+						curr_height += 1
+						if curr_height == height:
+							break # No point in looking for the next row if we're already tall enough
+						var next_row_ind = room.cells.find(Vector2i(curr_row.x, curr_row.y + 1))
+						curr_row = room.cells[next_row_ind] if next_row_ind != -1 else null
+					
+					# Ie. this current column is not tall enough
+					if curr_height != height:
+						break
+
+					# Current column is tall enough, so look for the next one
+					curr_width += 1
+					var next_col_ind = room.cells.find(Vector2i(curr_col.x + 1, cell.y))
+					curr_col = room.cells[next_col_ind] if next_col_ind != -1 else null
+
+				if curr_width == width:
+					room_found = true
+					break
+		
+		status = Status.COMPLETE if room_found else Status.INCOMPLETE
+
+
+	# Sort so that the most negative x and most negative y coordinate is the first
+	# Ideally this helps with processing because we add +1 in the check() function implementation
+	func coords_sort_fn(a: Vector2i, b: Vector2i) -> bool:
+		if a.x < b.x:
+			return true
+		if a.x == b.x:
+			return a.y < b.y
+		return false
