@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxgrddf7oqmy6"]
+[gd_scene load_steps=10 format=3 uid="uid://cxgrddf7oqmy6"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_o4qom"]
+[ext_resource type="Theme" uid="uid://3ho7np3d0d4s" path="res://assets/GameTheme.tres" id="2_6vrmw"]
+[ext_resource type="Texture2D" uid="uid://c0yaj0k1eyvqg" path="res://assets/spritesheet.png" id="3_gncf0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orgcb"]
+atlas = ExtResource("3_gncf0")
+region = Rect2(256, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbg2j"]
+atlas = ExtResource("3_gncf0")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xamc3"]
+atlas = ExtResource("3_gncf0")
+region = Rect2(288, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puigc"]
+atlas = ExtResource("3_gncf0")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7cdp"]
+atlas = ExtResource("3_gncf0")
+region = Rect2(320, 224, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugyl1"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.588235)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_o4qom")
@@ -22,38 +51,42 @@ size_flags_vertical = 4
 
 [node name="Stone" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme = ExtResource("2_6vrmw")
 text = "Stone"
+icon = SubResource("AtlasTexture_orgcb")
 
 [node name="Grass" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme = ExtResource("2_6vrmw")
 text = "Grass"
+icon = SubResource("AtlasTexture_nbg2j")
 
 [node name="Water" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Water
-"
+theme = ExtResource("2_6vrmw")
+text = "Water"
+icon = SubResource("AtlasTexture_xamc3")
 
 [node name="Dirt" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Dirt
-"
+text = "Dirt"
+icon = SubResource("AtlasTexture_puigc")
 
 [node name="Snow" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Snow
-"
+text = "Snow"
+icon = SubResource("AtlasTexture_t7cdp")
 
-[node name="ObjectivesUI" type="VBoxContainer" parent="."]
+[node name="ObjectivesUI" type="PanelContainer" parent="."]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 1142.0
-offset_bottom = 55.0
-alignment = 1
+offset_right = 1141.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugyl1")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ObjectivesUI"]
 layout_mode = 2
