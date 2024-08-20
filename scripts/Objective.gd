@@ -32,28 +32,28 @@ class AreaObjective extends Objective:
 				break
 		status = Status.COMPLETE if room_found else Status.INCOMPLETE
 
-class RelativeObjective extends Objective:
-	
-	var adj_type : Vector2 # this is the type of tile comparing against
-	
-	func _init(_description, _room_type, _adj_type) -> void:
-		description = _description
-		type = ObjectiveType.RELATIVE
-		room_type = _room_type
-		adj_type = _adj_type
-		
-	# takes a room and a type and determines if there is an adjacent tile
-	# of that type to the given room
-	func has_adjacent(room : Room, type : Vector2) -> bool:
-		
-		return false
-		
-	func check(rooms: Array[Room]) -> void:
-		var room_found = false
-		for room in rooms:
-			if room.type == type and has_adjacent(room, adj_type):
-				break
-		status = Status.COMPLETE if room_found else Status.INCOMPLETE
+#class RelativeObjective extends Objective:
+	#
+	#var adj_type : Vector2 # this is the type of tile comparing against
+	#
+	#func _init(_description, _room_type, _adj_type) -> void:
+		#description = _description
+		#type = ObjectiveType.RELATIVE
+		#room_type = _room_type
+		#adj_type = _adj_type
+		#
+	## takes a room and a type and determines if there is an adjacent tile
+	## of that type to the given room
+	#func has_adjacent(room : Room, type : Vector2) -> bool:
+		#
+		#return false
+		#
+	#func check(rooms: Array[Room]) -> void:
+		#var room_found = false
+		#for room in rooms:
+			#if room.type == type and has_adjacent(room, adj_type):
+				#break
+		#status = Status.COMPLETE if room_found else Status.INCOMPLETE
 
 
 # Specifies the MINIMUM dimensions required

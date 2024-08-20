@@ -1,58 +1,45 @@
 extends Node
 
 class_name ObjectiveManager
+@onready var LevelManager : LevelManager = $"../LevelManager"
 
 # just going to have 3 objectives for now - TODO: add a new objective when one is complete
 var objectives : Array[Objective]
 signal objectives_updated
 
-# only called once
+# 3 area and 2 dimension objectives
 func initialize_objectives():
-	# Initialize objectives for level 1
-	# Stone
-	var stone_objective = Objective.AreaObjective.new(
-		"Create a Stone room with an area of 5",
-		Tile.TILE_TYPE.STONE,
-		5,
-		)
-	objectives.push_front(stone_objective)
-	var stone_dim_objective = Objective.DimensionObjective.new(
-		"Create a Stone room that is at least 2 wide and 2 high",
-		Tile.TILE_TYPE.STONE,
-		2,
-		2,
-		)
-	objectives.push_front(stone_dim_objective)
-	# Grass
-	var grass_objective = Objective.AreaObjective.new(
-		"Create a Grass room with an area of 3",
-		Tile.TILE_TYPE.GRASS,
-		3,
-		)
-	objectives.push_front(grass_objective)
-	var grass_dim_objective = Objective.DimensionObjective.new(
-		"Create a Grass room that is at least 3 high",
-		Tile.TILE_TYPE.GRASS,
-		1,
-		3,
-		)
-	objectives.push_front(grass_dim_objective)
-	# Water
-	var water_objective = Objective.AreaObjective.new(
-		"Create a Water room with an area of 8",
-		Tile.TILE_TYPE.WATER,
-		8,
-		)
-	objectives.push_front(water_objective)
+	objectives.clear()
+	for i in 2:
+		var objective = LevelManager.get_random_dimension_objective()
+		objectives.push_front(objective)
+	for i in 3:
+		var objective = LevelManager.get_random_area_objective()
+		objectives.push_front(objective)
+		
 	objectives_updated.emit()
 
 func _ready():
 	initialize_objectives()
+	
+# returns true if the current objectives are completed
+func is_objectives_completed() -> bool:
+	for objective : Objective in objectives:
+		if objective.status == Objective.Status.INCOMPLETE:
+			return false
+	initialize_objectives()
+	# emit a signal to the LevelManager to load the next level
+	return true
+	
 
 # TODO: don't need to pass in rooms as a signal parameter (since we
 # 		can access as a global variable)
 func handle_room_updated(rooms : Array[Room]):
 	for objective in objectives:
-		objective.check(rooms)
+		objective.check(rooms) # this will update the status of each objective
+		
+	is_objectives_completed()
+	# check if all objectives are completed
+	
 
 	objectives_updated.emit()
