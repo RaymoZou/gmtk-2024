@@ -7,6 +7,7 @@ const TILESHEET_INDEX : int = 2 # this shouldn't change if we're just using 1 sp
 var curr_tile : Vector2 = Tile.STONE_TILE # Default to stone tile
 
 var highlighted_cell : Vector2 = Vector2.ZERO # cell the mouse is currently over
+var block_count : int = 0
 const HIGHLIGHTER_TILE : Vector2 = Vector2(9, 8) # atlas of the highlight sprite
 @onready var ui_layer : TileMapLayer = $UILayer
 
@@ -35,6 +36,7 @@ func place_block(coords: Vector2):
 		set_cell(coords, TILESHEET_INDEX, curr_tile)	
 		cell_layout_changed.emit() # Emit signal that cell layout has changed
 		block_placed.emit()
+		block_count += 1
 	else:
 		print("cannot place tile!")
 		
@@ -48,10 +50,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 	
 # remove the tile at the cursor position
-func remove_block(coords: Vector2):
-	var atlas_cell = get_cell_atlas_coords(coords) # (-1, -1) if there is no tile there
-	if atlas_cell == Vector2i(-1, -1):
-		print("there is no block to remove")
-	else:
-		erase_cell(coords)
-		cell_layout_changed.emit() # Emit signal that cell layout has changed
+func remove_block(_coords: Vector2):
+	pass
+	#var atlas_cell = get_cell_atlas_coords(coords) # (-1, -1) if there is no tile there
+	#if atlas_cell == Vector2i(-1, -1):
+		#print("there is no block to remove")
+	#else:
+		#erase_cell(coords)
+		#cell_layout_changed.emit() # Emit signal that cell layout has changed

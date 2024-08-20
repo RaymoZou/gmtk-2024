@@ -36,6 +36,18 @@ theme_override_font_sizes/font_size = 36
 text = "Water
 "
 
+[node name="Dirt" type="Button" parent="ButtonContainerUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Dirt
+"
+
+[node name="Snow" type="Button" parent="ButtonContainerUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Snow
+"
+
 [node name="ObjectivesUI" type="VBoxContainer" parent="."]
 offset_left = 10.0
 offset_top = 10.0
@@ -55,3 +67,5 @@ text_direction = 1
 [connection signal="pressed" from="ButtonContainerUI/Stone" to="." method="handle_stone"]
 [connection signal="pressed" from="ButtonContainerUI/Grass" to="." method="handle_grass"]
 [connection signal="pressed" from="ButtonContainerUI/Water" to="." method="handle_water"]
+[connection signal="pressed" from="ButtonContainerUI/Dirt" to="." method="handle_dirt"]
+[connection signal="pressed" from="ButtonContainerUI/Snow" to="." method="handle_snow"]

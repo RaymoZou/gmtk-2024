@@ -31,3 +31,9 @@ func handle_grass():
 func handle_water():
 	#print("water type")
 	tile_manager.curr_tile = Tile.WATER_TILE
+	
+func handle_snow():
+	tile_manager.curr_tile = Tile.SNOW_TILE
+	
+func handle_dirt():
+	tile_manager.curr_tile = Tile.DIRT_TILE

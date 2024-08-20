@@ -35,10 +35,22 @@ func handle_cell_layout_change() -> void:
 		placement_layer.get_used_cells_by_id(2, Tile.WATER_TILE),
 	)
 	
+	var dirt_data = LayerData.new(
+		Tile.TILE_TYPE.DIRT,
+		placement_layer.get_used_cells_by_id(2, Tile.DIRT_TILE),
+	)
+	
+	var snow_data = LayerData.new(
+		Tile.TILE_TYPE.SNOW,
+		placement_layer.get_used_cells_by_id(2, Tile.SNOW_TILE),
+	)
+	
 	var layers : Array[LayerData]
 	layers.push_back(stone_data)
 	layers.push_back(grass_data)
 	layers.push_back(water_data)
+	layers.push_back(dirt_data)
+	layers.push_back(snow_data)
 	
 	for layer in layers:
 		var cells = layer.cells
