@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://tj4anjtvy1is"]
+[gd_scene load_steps=15 format=4 uid="uid://tj4anjtvy1is"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_kb8rw"]
 [ext_resource type="Texture2D" uid="uid://c0yaj0k1eyvqg" path="res://assets/spritesheet.png" id="2_afvep"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://daqimep3rko6b" path="res://assets/background_music.ogg" id="8_udcny"]
 [ext_resource type="Script" path="res://scripts/sfx_manager.gd" id="9_ujoul"]
 [ext_resource type="AudioStream" uid="uid://mddij2x56yt8" path="res://assets/block_place.wav" id="10_lh4gb"]
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="11_pwo41"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0h1hw"]
 tile_data = PackedInt32Array(0, 393218, 5, 65536, 393218, 5, 131072, 393218, 5, 196608, 393218, 5, 1, 393218, 5, 196609, 393218, 5, 2, 393218, 5, 196610, 393218, 5, 3, 393218, 5, 65539, 393218, 5, 131075, 393218, 5, 196611, 393218, 5)
@@ -80,6 +81,9 @@ parameters/looping = true
 bus = &"SFX"
 script = ExtResource("9_ujoul")
 block_place = ExtResource("10_lh4gb")
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("11_pwo41")
 
 [connection signal="updated_rooms" from="." to="ObjectiveManager" method="handle_room_updated"]
 [connection signal="block_placed" from="PlacementLayer" to="SFXManager" method="handle_block_placed"]
