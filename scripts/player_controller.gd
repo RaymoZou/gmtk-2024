@@ -20,15 +20,16 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_pressed("ui_select"):
 		camera.position = Vector2.ZERO
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_mouse"):
+		
+	if Input.is_action_pressed("left_mouse"):
 		var tile_coords : Vector2 = tilemap_layer.get_tile_position()
 		tilemap_layer.place_block(tile_coords)
+
+func _unhandled_input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("right_mouse"):
-		var tile_coords : Vector2 = tilemap_layer.get_tile_position()
-		tilemap_layer.remove_block(tile_coords)
+	#if event.is_action_pressed("right_mouse"):
+		#var tile_coords : Vector2 = tilemap_layer.get_tile_position()
+		#tilemap_layer.remove_block(tile_coords)
 		
 	# camera zoom
 	if event.is_action_pressed("scroll_down"):
