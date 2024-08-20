@@ -12,8 +12,8 @@ var min_area = 2
 var max_area = 7
 
 # for DimensionObjective
-var min_dimension = 2
-var max_dimension = 2
+var min_dimension = 1
+var max_dimension = 3
 
 func handle_objectives_finished():
 	level += 1 # increment level count
