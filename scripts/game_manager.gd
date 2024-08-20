@@ -84,6 +84,5 @@ func do_dfs(coords: Vector2i, cells: Array[Vector2i], visited: Array[Vector2i]) 
 	do_dfs(down, cells, visited)
 	do_dfs(left, cells, visited)
 
-	rooms.push_front(visited)
 	return visited
 	
