@@ -12,43 +12,40 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -88.5
-offset_top = -31.0
+offset_top = -41.0
 offset_right = 88.5
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(89, 41)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Stone" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "Stone"
 
-[node name="Grass2" type="Button" parent="ButtonContainerUI"]
+[node name="Grass" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
-text = "Grass2"
+theme_override_font_sizes/font_size = 36
+text = "Grass"
 
 [node name="Water" type="Button" parent="ButtonContainerUI"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "Water
 "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ButtonContainerUI"]
-visible = false
-layout_mode = 2
-text = "tile: N/A"
-fit_content = true
-
 [node name="ObjectivesUI" type="VBoxContainer" parent="."]
-offset_right = 294.0
-offset_bottom = 40.0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(-25, -25)
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1142.0
+offset_bottom = 55.0
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ObjectivesUI"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "place_holder text"
 fit_content = true
@@ -56,5 +53,5 @@ scroll_active = false
 text_direction = 1
 
 [connection signal="pressed" from="ButtonContainerUI/Stone" to="." method="handle_stone"]
-[connection signal="pressed" from="ButtonContainerUI/Grass2" to="." method="handle_grass"]
+[connection signal="pressed" from="ButtonContainerUI/Grass" to="." method="handle_grass"]
 [connection signal="pressed" from="ButtonContainerUI/Water" to="." method="handle_water"]
