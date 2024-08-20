@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://tj4anjtvy1is"]
+[gd_scene load_steps=14 format=4 uid="uid://tj4anjtvy1is"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_kb8rw"]
 [ext_resource type="Texture2D" uid="uid://c0yaj0k1eyvqg" path="res://assets/spritesheet.png" id="2_afvep"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="5_17rar"]
 [ext_resource type="PackedScene" uid="uid://rjry5rga2wmm" path="res://scenes/player_camera.tscn" id="6_1ikdd"]
 [ext_resource type="PackedScene" uid="uid://wu4u12hwf865" path="res://scenes/objective_manager.tscn" id="7_dytgf"]
+[ext_resource type="AudioStream" uid="uid://daqimep3rko6b" path="res://assets/background_music.ogg" id="8_udcny"]
+[ext_resource type="Script" path="res://scripts/sfx_manager.gd" id="9_ujoul"]
+[ext_resource type="AudioStream" uid="uid://mddij2x56yt8" path="res://assets/block_place.wav" id="10_lh4gb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0h1hw"]
 tile_data = PackedInt32Array(0, 393218, 5, 65536, 393218, 5, 131072, 393218, 5, 196608, 393218, 5, 1, 393218, 5, 196609, 393218, 5, 2, 393218, 5, 196610, 393218, 5, 3, 393218, 5, 65539, 393218, 5, 131075, 393218, 5, 196611, 393218, 5)
@@ -68,6 +71,17 @@ script = ExtResource("5_17rar")
 
 [node name="ObjectiveManager" parent="." instance=ExtResource("7_dytgf")]
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_udcny")
+autoplay = true
+parameters/looping = true
+
+[node name="SFXManager" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("9_ujoul")
+block_place = ExtResource("10_lh4gb")
+
 [connection signal="updated_rooms" from="." to="ObjectiveManager" method="handle_room_updated"]
+[connection signal="block_placed" from="PlacementLayer" to="SFXManager" method="handle_block_placed"]
 [connection signal="cell_layout_changed" from="PlacementLayer" to="." method="handle_cell_layout_change"]
 [connection signal="objectives_updated" from="ObjectiveManager" to="UI" method="handle_objectives_updated"]

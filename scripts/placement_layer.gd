@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 signal cell_layout_changed()
+signal block_placed()
 
 const TILESHEET_INDEX : int = 2 # this shouldn't change if we're just using 1 spritesheet
 var curr_tile : Vector2 = Tile.STONE_TILE # Default to stone tile
@@ -33,6 +34,7 @@ func place_block(coords: Vector2):
 	if has_neighbors(coords) and is_empty(coords):
 		set_cell(coords, TILESHEET_INDEX, curr_tile)	
 		cell_layout_changed.emit() # Emit signal that cell layout has changed
+		block_placed.emit()
 	else:
 		print("cannot place tile!")
 		
