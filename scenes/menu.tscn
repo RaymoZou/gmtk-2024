@@ -32,12 +32,6 @@ theme = ExtResource("2_3ipwx")
 text = "Start"
 alignment = 0
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_3ipwx")
-text = "Options"
-alignment = 0
-
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
@@ -46,5 +40,4 @@ text = "Quit"
 alignment = 0
 
 [connection signal="button_up" from="VBoxContainer/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_button_up"]
 [connection signal="button_up" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_button_up"]
