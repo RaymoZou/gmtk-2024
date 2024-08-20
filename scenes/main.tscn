@@ -78,7 +78,6 @@ autoplay = true
 parameters/looping = true
 
 [node name="SFXManager" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 script = ExtResource("9_ujoul")
 block_place = ExtResource("10_lh4gb")
 

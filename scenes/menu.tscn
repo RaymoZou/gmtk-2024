@@ -21,7 +21,7 @@ offset_bottom = 205.0
 [node name="Title" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_3ipwx")
-text = "Untitled Game"
+text = "Terrained"
 fit_content = true
 autowrap_mode = 0
 

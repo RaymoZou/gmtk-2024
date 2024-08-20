@@ -11,13 +11,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -87.0
-offset_right = 68.0
-offset_bottom = -56.0
+offset_left = -88.5
+offset_top = -31.0
+offset_right = 88.5
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
+pivot_offset = Vector2(89, 41)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
